@@ -14,6 +14,7 @@ const Button = ({
   variant = "primary",
   onPress,
   styles = {},
+  disabled = false,
 }: {
   buttonText: string;
   variant?: "primary" | "secondary";
@@ -22,6 +23,7 @@ const Button = ({
     container?: StyleProp<ViewStyle>;
     text?: StyleProp<TextStyle>;
   };
+  disabled?: boolean;
 }) => {
   return (
     <TouchableOpacity
@@ -39,6 +41,7 @@ const Button = ({
           borderWidth: variant === "secondary" ? 1 : 0,
           borderColor:
             variant === "secondary" ? Colors.blue[600] : "transparent",
+          opacity: disabled ? 0.5 : 1,
         },
         styles.container,
       ]}

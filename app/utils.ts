@@ -1,8 +1,8 @@
-import { Feeling } from "./app/types";
-import { VeryHappy, Happy, Neutral, Sad, VerySad } from "./assets";
-import Colors from "./constants/colors";
+import { Happy, Neutral, Sad, VeryHappy, VerySad } from "../assets";
+import Colors from "../constants/colors";
+import { Feeling, Mood, SleepHours } from "./types";
 
-export const feelingsTags:Feeling[] = [
+export const feelingsTags: Feeling[] = [
   "JOYFUL",
   "DOWN",
   "ANXIOUS",
@@ -27,7 +27,7 @@ export const feelingsTags:Feeling[] = [
 
 export const sleepOptions: {
   label: string;
-  value: number;
+  value: SleepHours;
 }[] = [
   { label: "9+ hours", value: 9 },
   { label: "7-8 hours", value: 7.5 },
@@ -35,8 +35,6 @@ export const sleepOptions: {
   { label: "3-4 hours", value: 3.5 },
   { label: "0-2 hours", value: 1 },
 ];
-
-export type MoodLevel = -2 | -1 | 0 | 1 | 2;
 
 export interface MoodConfig {
   color: string;
@@ -46,7 +44,7 @@ export interface MoodConfig {
     color?: string;
   }>;
   moodText: string;
-  value: MoodLevel;
+  value: Mood;
 }
 
 export const MOODS_CONFIG: MoodConfig[] = [
@@ -62,7 +60,7 @@ export const MOODS_CONFIG: MoodConfig[] = [
   { color: Colors.red[300], Icon: VerySad, moodText: "Very Sad", value: -2 },
 ];
 
-export const getMoodConfig = (mood: MoodLevel) => {
+export const getMoodConfig = (mood: Mood) => {
   return (
     MOODS_CONFIG.find((config) => config.value === mood) || {
       color: Colors.blue[300],

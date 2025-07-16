@@ -46,6 +46,7 @@ const Typography = {
     fontFamily: "Reddit Sans Medium",
     fontSize: 18,
     fontStyle: "italic",
+
     lineHeight: 18 * 1.3,
   },
   preset6Regular: {

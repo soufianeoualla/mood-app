@@ -18,6 +18,7 @@ const CommentStep = () => {
       <Text style={styles.heading}>Write about your day...</Text>
       <TextInput
         multiline
+        value={comment}
         placeholder="Today, I felt…"
         onChangeText={(text) => setComment(text)}
         numberOfLines={5}

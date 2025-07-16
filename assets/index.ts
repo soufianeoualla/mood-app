@@ -11,6 +11,9 @@ import Sad from "./images/sad.svg";
 import VeryHappy from "./images/very-happy.svg";
 import VerySad from "./images/very-sad.svg";
 import Neutral from "./images/neutral.svg";
+import QuoteIcon from "./images/quote.svg";
+import SleepIcon from "./images/sleep.svg";
+import ReflectionIcon from "./images/reflection.svg";
 
 export {
   Logo,
@@ -26,4 +29,7 @@ export {
   VeryHappy,
   VerySad,
   Neutral,
+  QuoteIcon,
+  SleepIcon,
+  ReflectionIcon,
 };

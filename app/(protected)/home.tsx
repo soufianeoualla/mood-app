@@ -1,25 +1,44 @@
-import { View, Text } from "react-native";
-import React from "react";
-import Typography from "@/constants/typography";
-import Colors from "@/constants/colors";
-import useAuthStore from "@/store/use-auth-store";
+import { View, ScrollView } from "react-native";
+
 import Greeting from "./components/greeting";
-import { Logo } from "@/assets";
-import Avatar from "@/components/ui/avatar";
+
 import Header from "./components/header";
+import LoggedMood from "./components/logged-mood";
+import Button from "@/components/ui/button";
+import { useRouter } from "expo-router";
+import { useMoodContext } from "./context/mood-context";
 
 const Home = () => {
-  const { user } = useAuthStore();
-  const firstName = user?.name?.split(" ")[0] || "There";
+  const router = useRouter();
+  const { currentMoodEntry } = useMoodContext();
 
   return (
     <View
       style={{
-        paddingHorizontal: 20,
+        flex: 1,
       }}
     >
       <Header />
-      <Greeting />
+      <ScrollView style={{ flex: 1, paddingHorizontal: 20, paddingBottom: 20 }}>
+        <Greeting />
+
+        {currentMoodEntry ? (
+          <LoggedMood />
+        ) : (
+          <Button
+            onPress={() => router.push("/log-mood")}
+            buttonText="Log today's mood"
+            styles={{
+              container: {
+                marginTop: 48,
+                width: "auto",
+                paddingHorizontal: 32,
+                paddingVertical: 12,
+              },
+            }}
+          />
+        )}
+      </ScrollView>
     </View>
   );
 };

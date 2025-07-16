@@ -1,14 +1,14 @@
-import { View, Text, Pressable } from "react-native";
-import React from "react";
-import Typography from "@/constants/typography";
+import { feelingsTags } from "@/app/utils";
+import Checkbox from "@/components/ui/checkbox";
+import ErrorMessage from "@/components/ui/error-message";
 import Colors from "@/constants/colors";
+import Typography from "@/constants/typography";
+import React from "react";
+import { Pressable, Text, View } from "react-native";
 import {
   MAX_FEELINGS,
   useLogMoodContext,
 } from "../../context/log-mood-context";
-import { feelingsTags } from "@/utils";
-import Checkbox from "@/components/ui/checkbox";
-import ErrorMessage from "@/components/ui/error-message";
 
 const FeelingsStep = () => {
   const {
@@ -48,40 +48,46 @@ const FeelingsStep = () => {
           gap: 10,
         }}
       >
-        {feelingsTags.map((feeling, index) => (
-          <Pressable
-            onPress={() => setFeelings(feeling)}
-            key={index}
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 8,
-              borderRadius: 10,
-              backgroundColor: Colors.neutral[0],
-              borderWidth: feelings.includes(feeling) ? 2 : 1,
-              borderColor: feelings.includes(feeling)
-                ? Colors.blue[600]
-                : Colors.blue[200],
-              paddingVertical: 12,
-              paddingHorizontal: 14,
-            }}
-          >
-            <Checkbox
-              isChecked={feelings.includes(feeling)}
+        {feelingsTags.map((feeling, index) => {
+          const isDisabled =
+            feelings.length >= MAX_FEELINGS && !feelings.includes(feeling);
+          return (
+            <Pressable
+              disabled={isDisabled}
               onPress={() => setFeelings(feeling)}
-            />
-
-            <Text
+              key={index}
               style={{
-                ...Typography.preset6,
-                color: Colors.neutral[900],
-                textTransform: "capitalize",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 8,
+                borderRadius: 10,
+                backgroundColor: Colors.neutral[0],
+                borderWidth: feelings.includes(feeling) ? 2 : 1,
+                borderColor: feelings.includes(feeling)
+                  ? Colors.blue[600]
+                  : Colors.blue[200],
+                paddingVertical: 12,
+                paddingHorizontal: 14,
+                opacity: isDisabled ? 0.6 : 1,
               }}
             >
-              {feeling.toLowerCase()}
-            </Text>
-          </Pressable>
-        ))}
+              <Checkbox
+                isChecked={feelings.includes(feeling)}
+                onPress={() => setFeelings(feeling)}
+              />
+
+              <Text
+                style={{
+                  ...Typography.preset6,
+                  color: Colors.neutral[900],
+                  textTransform: "capitalize",
+                }}
+              >
+                {feeling.toLowerCase()}
+              </Text>
+            </Pressable>
+          );
+        })}
       </View>
       <ErrorMessage message={error} />
     </View>

@@ -1,12 +1,17 @@
-import { View, Text, Pressable } from "react-native";
-import React from "react";
-import { MOODS_CONFIG } from "@/utils";
+import { MOODS_CONFIG } from "@/app/utils";
 import Colors from "@/constants/colors";
 import Typography from "@/constants/typography";
+import React from "react";
+import { Pressable, Text, View } from "react-native";
 import { useLogMoodContext } from "../../context/log-mood-context";
+import ErrorMessage from "@/components/ui/error-message";
 
 const MoodStep = () => {
-  const { data, setMood, errors } = useLogMoodContext();
+  const {
+    data: { mood },
+    setMood,
+    errors: { mood: error },
+  } = useLogMoodContext();
 
   return (
     <View>
@@ -42,9 +47,8 @@ const MoodStep = () => {
               backgroundColor: Colors.neutral[0],
               borderRadius: 16,
               gap: 12,
-              borderWidth: data.mood === value ? 3 : 1,
-              borderColor:
-                data.mood === value ? Colors.blue[600] : Colors.blue[200],
+              borderWidth: mood === value ? 3 : 1,
+              borderColor: mood === value ? Colors.blue[600] : Colors.blue[200],
             }}
           >
             <Icon width={70} height={70} />
@@ -59,17 +63,7 @@ const MoodStep = () => {
           </Pressable>
         ))}
       </View>
-      {errors.mood && (
-        <Text
-          style={{
-            color: Colors.red[700],
-            ...Typography.preset8,
-            marginTop: 10,
-          }}
-        >
-          * {errors.mood}
-        </Text>
-      )}
+      <ErrorMessage message={error} />
     </View>
   );
 };

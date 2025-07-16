@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Image } from "react-native";
 import React from "react";
 import { AvatarIcon } from "@/assets";
 
@@ -12,7 +12,14 @@ const Avatar = ({
   return (
     <View>
       {imageUrl ? (
-        <Image src={imageUrl} />
+        <Image
+          src={imageUrl}
+          style={{
+            width: size,
+            height: size,
+            borderRadius: 999,
+          }}
+        />
       ) : (
         <AvatarIcon width={size} height={size} />
       )}
