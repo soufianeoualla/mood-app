@@ -24,7 +24,6 @@ export default function AuthLayout() {
         <SafeAreaView>
           <View
             style={{
-              paddingTop: 50,
               paddingHorizontal: 20,
             }}
           >

@@ -1,5 +1,4 @@
-import { View, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text } from "react-native";
 
 import React, { Fragment } from "react";
 
@@ -7,7 +6,7 @@ import AuthForm from "./components/authForm";
 import Typography from "@/constants/typography";
 import Colors from "@/constants/colors";
 
-const login = () => {
+const Login = () => {
   return (
     <Fragment>
       <Text
@@ -34,4 +33,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

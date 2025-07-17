@@ -68,9 +68,9 @@ const AuthGuard = ({ children }: { children?: React.ReactNode }) => {
 
     if (user) {
       if (user.onboardingComplete === false) {
-        router.push("/onboarding");
+        router.replace("/onboarding");
       } else if (user.onboardingComplete === true) {
-        router.push("/");
+        router.replace("/");
       }
     }
   }, [isInitialized, user, router]);

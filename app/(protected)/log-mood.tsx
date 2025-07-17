@@ -177,7 +177,7 @@ const LogMood = () => {
         onClose={() => {
           setShowPopup(false);
           refetch();
-          if (!isError) router.push("/home");
+          if (!isError) router.push("/");
         }}
         message={message}
       />
