@@ -60,7 +60,7 @@ export const MOODS_CONFIG: MoodConfig[] = [
   { color: Colors.red[300], Icon: VerySad, moodText: "Very Sad", value: -2 },
 ];
 
-export const getMoodConfig = (mood: Mood) => {
+export const getMoodConfig = (mood?: Mood) => {
   return (
     MOODS_CONFIG.find((config) => config.value === mood) || {
       color: Colors.blue[300],

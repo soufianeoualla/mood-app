@@ -6,13 +6,13 @@ import getCurrentMoodService from "../services/get-current-mood.service";
 import getChartDataService from "../services/get-chart-data.service";
 import getAverageMoodAndSleepService from "../services/get-average-mood-and-sleep.service";
 import Loader from "@/components/ui/loader";
-import MoodEntry from "@/app/types";
+import MoodEntry, { Mood, SleepHours } from "@/app/types";
 
 export type Status = "up" | "down" | "same" | null;
 
 type AverageData = {
-  averageMood: number | null;
-  averageSleepHours: number | null;
+  averageMood: Mood | null;
+  averageSleepHours: SleepHours | null;
   moodStatus: Status;
   sleepStatus: Status;
 };

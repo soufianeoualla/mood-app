@@ -4,6 +4,7 @@ import {
   ViewStyle,
   Text,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 
 import Colors from "@/constants/colors";
@@ -15,6 +16,7 @@ const Button = ({
   onPress,
   styles = {},
   disabled = false,
+  isLoading = false,
 }: {
   buttonText: string;
   variant?: "primary" | "secondary";
@@ -24,9 +26,11 @@ const Button = ({
     text?: StyleProp<TextStyle>;
   };
   disabled?: boolean;
+  isLoading?: boolean;
 }) => {
   return (
     <TouchableOpacity
+      disabled={disabled || isLoading}
       onPress={onPress}
       style={[
         {
@@ -40,23 +44,33 @@ const Button = ({
             variant === "primary" ? Colors.blue[600] : "transparent",
           borderWidth: variant === "secondary" ? 1 : 0,
           borderColor:
-            variant === "secondary" ? Colors.blue[600] : "transparent",
-          opacity: disabled ? 0.5 : 1,
+            variant === "secondary" ? Colors.neutral[300] : "transparent",
+          opacity: disabled || isLoading ? 0.5 : 1,
         },
         styles.container,
       ]}
     >
-      <Text
-        style={[
-          {
-            color: variant === "primary" ? Colors.neutral[0] : Colors.blue[600],
-            ...Typography.preset5,
-          },
-          styles.text,
-        ]}
-      >
-        {buttonText}
-      </Text>
+      {isLoading ? (
+        <ActivityIndicator
+          size="small"
+          color={
+            variant === "primary" ? Colors.neutral[0] : Colors.neutral[900]
+          }
+        />
+      ) : (
+        <Text
+          style={[
+            {
+              color:
+                variant === "primary" ? Colors.neutral[0] : Colors.neutral[900],
+              ...Typography.preset5,
+            },
+            styles.text,
+          ]}
+        >
+          {buttonText}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };

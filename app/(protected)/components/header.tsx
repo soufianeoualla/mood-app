@@ -12,7 +12,7 @@ const Header = () => {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: 48,
+        marginBottom: 32,
         paddingHorizontal: 20,
       }}
     >

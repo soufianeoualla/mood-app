@@ -14,6 +14,11 @@ import Neutral from "./images/neutral.svg";
 import QuoteIcon from "./images/quote.svg";
 import SleepIcon from "./images/sleep.svg";
 import ReflectionIcon from "./images/reflection.svg";
+import HouseIcon from "./images/house.svg";
+import SettingsIcon from "./images/settings.svg";
+import TrendingUpIcon from "./images/trending-up.svg";
+import Shapes from "./images/shapes.svg";
+import ArrowRightIcon from "./images/arrow-right.svg";
 
 export {
   Logo,
@@ -32,4 +37,9 @@ export {
   QuoteIcon,
   SleepIcon,
   ReflectionIcon,
+  HouseIcon,
+  TrendingUpIcon,
+  SettingsIcon,
+  Shapes,
+  ArrowRightIcon
 };
