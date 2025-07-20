@@ -1,10 +1,10 @@
 import ProfileForm, { ProfileSchemaType } from "@/components/profile-form";
+import Popup from "@/components/ui/popup";
 import useAuthStore from "@/store/use-auth-store";
 import { useMutation } from "@tanstack/react-query";
-import updateProfileService from "./services/update-profile.service";
 import { Fragment, useState } from "react";
-import Popup from "@/components/ui/popup";
-import Header from "./components/header";
+import Header from "../components/header";
+import updateProfileService from "../services/update-profile.service";
 
 const Settings = () => {
   const { user, setUser } = useAuthStore();

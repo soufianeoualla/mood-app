@@ -109,7 +109,7 @@ const AuthForm = ({ type }: { type?: "login" | "signup" }) => {
       {/* Forgot Password */}
       <TouchableOpacity
         style={styles.forgotWrapper}
-        onPress={() => console.log("Forgot Password Pressed")}
+        onPress={() => router.push("/forgot-password")}
       >
         <Text style={styles.forgotText}>Forgot Password?</Text>
       </TouchableOpacity>

@@ -1,9 +1,9 @@
 import { Slot } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Logo } from "@/assets";
+
 import { AuthGuard } from "@/components/auth-wrappers";
 
 export default function AuthLayout() {
@@ -22,19 +22,7 @@ export default function AuthLayout() {
       >
         <StatusBar style="auto" />
         <SafeAreaView>
-          <View
-            style={{
-              paddingHorizontal: 20,
-            }}
-          >
-            <Logo
-              style={{
-                margin: "auto",
-              }}
-            />
-
-            <Slot />
-          </View>
+          <Slot />
         </SafeAreaView>
       </LinearGradient>
     </AuthGuard>

@@ -41,7 +41,7 @@ const EntryDetails = ({
   onClose: () => void;
 }) => {
   const { mood, sleepHours, feelings, comment } = entry;
-  const { Icon, moodText } = getMoodConfig(mood as Mood);
+  const { Icon, moodText,color } = getMoodConfig(mood as Mood);
   const sleepHoursLabel = getSleepHours(sleepHours as SleepHours)?.label;
 
   return (
@@ -50,7 +50,7 @@ const EntryDetails = ({
         <View style={styles.modalSection}>
           <Text style={styles.modalLabel}>Mood</Text>
           <View style={styles.modalRow}>
-            <Icon width={16} height={16} />
+            <Icon width={16} height={16} color={color}  />
             <Text style={styles.modalText}>{moodText}</Text>
           </View>
         </View>
@@ -96,7 +96,7 @@ const Bar = ({ entry }: { entry: MoodEntry }) => {
           },
         ]}
       >
-        <Icon width={30} height={30} />
+        <Icon width={30} height={30} color={Colors.neutral[0]} />
       </Pressable>
       <EntryDetails
         entry={entry}
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: Colors.blue[100],
-    marginTop: 24,
+    marginVertical: 24,
   },
   trendTitle: {
     ...Typography.preset3,

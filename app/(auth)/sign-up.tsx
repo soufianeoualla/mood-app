@@ -1,13 +1,22 @@
-import { Text } from "react-native";
-import React, { Fragment } from "react";
+import { Text, View } from "react-native";
 import AuthForm from "./components/authForm";
 import Typography from "@/constants/typography";
 import Colors from "@/constants/colors";
-
+import { Logo } from "@/assets";
 
 const SignUp = () => {
   return (
-    <Fragment>
+    <View
+      style={{
+        paddingHorizontal: 20,
+      }}
+    >
+      <Logo
+        style={{
+          margin: "auto",
+          marginTop: 48,
+        }}
+      />
       <Text
         style={{
           marginTop: 32,
@@ -28,7 +37,7 @@ const SignUp = () => {
       </Text>
 
       <AuthForm type="signup" />
-    </Fragment>
+    </View>
   );
 };
 

@@ -34,7 +34,7 @@ const MoodStep = () => {
           gap: 16,
         }}
       >
-        {MOODS_CONFIG.map(({ moodText, Icon, value }, index) => (
+        {MOODS_CONFIG.map(({ moodText, Icon, value,color }, index) => (
           <Pressable
             onPress={() => setMood(value)}
             key={index}
@@ -51,7 +51,7 @@ const MoodStep = () => {
               borderColor: mood === value ? Colors.blue[600] : Colors.blue[200],
             }}
           >
-            <Icon width={70} height={70} />
+            <Icon width={70} height={70} color={color} />
             <Text
               style={{
                 color: Colors.neutral[900],

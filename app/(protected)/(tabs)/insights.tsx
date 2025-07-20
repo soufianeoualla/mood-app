@@ -1,14 +1,14 @@
 // Imports remain unchanged
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import Colors from "@/constants/colors";
 import Typography from "@/constants/typography";
 
-import AverageMood from "./components/avearge-mood";
-import AverageSleep from "./components/average-sleep";
+import AverageMood from "../components/avearge-mood";
+import AverageSleep from "../components/average-sleep";
 
-import Header from "./components/header";
-import Chart from "./components/chart";
+import Chart from "../components/chart";
+import Header from "../components/header";
 
 const Inseights = () => {
   return (

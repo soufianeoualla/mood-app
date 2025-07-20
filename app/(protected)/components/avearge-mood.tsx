@@ -34,9 +34,9 @@ const AverageMood = () => {
           width={24}
           height={24}
           color={Colors.neutral[0]}
-          fill={Colors.neutral[0]}
+
         />
-        <Text style={styles.titleLight}>{moodText}</Text>
+        <Text style={styles.title}>{moodText}</Text>
       </View>
       <View style={styles.row}>
         <ArrowRightIcon
@@ -112,9 +112,9 @@ const styles = StyleSheet.create({
     ...Typography.preset7,
     color: Colors.neutral[600],
   },
-  titleLight: {
+  title: {
     ...Typography.preset4,
-    color: Colors.neutral[0],
+    color: Colors.neutral[900],
   },
   subtitleDark: {
     ...Typography.preset7,

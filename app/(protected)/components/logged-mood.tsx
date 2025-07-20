@@ -8,7 +8,7 @@ import { getMoodConfig, getSleepHours } from "@/app/utils";
 
 const MoodContainer = () => {
   const { currentMoodEntry } = useMoodContext();
-  const mood = getMoodConfig(currentMoodEntry?.mood!);
+  const { moodText, Icon, color } = getMoodConfig(currentMoodEntry?.mood!);
 
   return (
     <View
@@ -23,9 +23,9 @@ const MoodContainer = () => {
     >
       <View style={styles.moodTextWrapper}>
         <Text style={styles.feelingLabel}>I’m feeling</Text>
-        <Text style={styles.feelingText}>{mood.moodText}</Text>
+        <Text style={styles.feelingText}>{moodText}</Text>
       </View>
-      <mood.Icon width={160} height={160} />
+      <Icon width={160} height={160} color={color} />
       <View style={styles.quoteWrapper}>
         <QuoteIcon />
         <Text style={styles.quoteText}>

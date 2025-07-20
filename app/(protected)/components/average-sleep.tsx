@@ -30,14 +30,20 @@ const AverageSleep = () => {
     <View style={[styles.card, { backgroundColor: Colors.blue[600] }]}>
       <Shapes style={styles.shapes} />
       <View style={styles.row}>
-        <SleepIcon width={24} height={24} />
+        <SleepIcon
+          width={24}
+          height={24}
+          color={Colors.neutral[0]}
+          opacity={0.7}
+        />
         <Text style={styles.titleLight}>{sleepHours?.label}</Text>
       </View>
       <View style={styles.row}>
         <ArrowRightIcon
           width={20}
           height={20}
-          color={Colors.neutral[900]}
+          color={Colors.neutral[0]}
+          opacity={0.8}
           style={{
             transform: [
               {
@@ -51,7 +57,7 @@ const AverageSleep = () => {
             ],
           }}
         />
-        <Text style={styles.subtitleDark}>
+        <Text style={styles.subtitle}>
           {status === "same" && "Same as the previous 5 check-ins"}
           {status === "up" && "Better than the previous 5 check-ins"}
           {status === "down" && "Worse than the previous 5 check-ins"}
@@ -111,9 +117,10 @@ const styles = StyleSheet.create({
     ...Typography.preset4,
     color: Colors.neutral[0],
   },
-  subtitleDark: {
+  subtitle: {
     ...Typography.preset7,
-    color: Colors.neutral[900],
+    color: Colors.neutral[0],
+    opacity: 0.8,
   },
 });
 

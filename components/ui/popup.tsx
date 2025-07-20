@@ -14,7 +14,7 @@ const Popup = ({
   onClose,
 }: {
   isError?: boolean;
-  isVisible?: boolean;
+  isVisible: boolean;
   message: string;
   onClose: () => void;
 }) => {
