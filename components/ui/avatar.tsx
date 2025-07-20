@@ -1,16 +1,18 @@
-import { View, Image } from "react-native";
+import { Image, Pressable } from "react-native";
 import React from "react";
 import { AvatarIcon } from "@/assets";
 
 const Avatar = ({
   size = 40,
   imageUrl = "",
+  onPress = () => {},
 }: {
   size?: number;
   imageUrl?: string;
+  onPress?: () => void;
 }) => {
   return (
-    <View>
+    <Pressable onPress={() => onPress?.()}>
       {imageUrl ? (
         <Image
           src={imageUrl}
@@ -23,7 +25,7 @@ const Avatar = ({
       ) : (
         <AvatarIcon width={size} height={size} />
       )}
-    </View>
+    </Pressable>
   );
 };
 

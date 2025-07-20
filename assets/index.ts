@@ -20,6 +20,8 @@ import TrendingUpIcon from "./images/trending-up.svg";
 import Shapes from "./images/shapes.svg";
 import ArrowRightIcon from "./images/arrow-right.svg";
 
+import LogOutIcon from "./images/log-out.svg";
+
 export {
   Logo,
   MailIcon,
@@ -41,5 +43,6 @@ export {
   TrendingUpIcon,
   SettingsIcon,
   Shapes,
-  ArrowRightIcon
+  ArrowRightIcon,
+  LogOutIcon,
 };
