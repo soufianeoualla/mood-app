@@ -88,16 +88,16 @@ const AuthGuard = ({ children }: { children?: React.ReactNode }) => {
 
 const OnboardingGuard = ({ children }: { children?: React.ReactNode }) => {
   const router = useRouter();
-  const { isLoading, user, isInitialized } = useAuthStore();
-
+  const { isLoading, user } = useAuthStore();
   useEffect(() => {
-    if (user && user.onboardingComplete === true) {
-      router.push("/");
-      return;
+    if (user) {
+      if (user.onboardingComplete === true) {
+        router.replace("/");
+      }
     }
-  }, [isInitialized, user, router]);
+  }, [user,router]);
 
-  if (isLoading || !isInitialized) {
+  if (isLoading) {
     return <Loader />;
   }
 

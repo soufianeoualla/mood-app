@@ -11,7 +11,7 @@ const FormMessage = ({
   message: string;
   isError?: boolean;
 }) => {
-  if(!message) return null;
+  if (!message) return null;
   return (
     <View
       style={{
@@ -21,20 +21,21 @@ const FormMessage = ({
         gap: 8,
         backgroundColor: isError
           ? "hsla(352, 100%, 45%, 0.1)"
-          : "hsla(115, 69%, 70%, 0.1)",
-        borderRadius: 8,
+          : "hsla(158, 60%, 52%, 0.1)",
+        borderRadius: 10,
         marginBottom: 16,
       }}
     >
       {isError ? (
-        <InfoIcon color={Colors.red[700]} width={28} height={28}/>
+        <InfoIcon color={Colors.red[700]} width={28} height={28} />
       ) : (
-        <CircleCheckIcon color={Colors.green[300]}width={28} height={28} />
+        <CircleCheckIcon color={Colors.emeraled[300]} width={28} height={28} />
       )}
       <Text
         style={{
-          color: isError ? Colors.red[700] : Colors.green[300],
+          color: isError ? Colors.red[700] : Colors.emeraled[300],
           ...Typography.preset7,
+          flexShrink: 1,
         }}
       >
         {message}

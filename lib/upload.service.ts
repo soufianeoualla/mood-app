@@ -1,26 +1,25 @@
 import axios from "axios";
 
-export type PickedImage = {
-  uri: string;
-  type?: string;
-  fileSize?: number;
-  fileName?: string;
-};
-
- const uploadService = async (file: PickedImage) => {
-  const formData = new FormData();
-
-  formData.append("file", {
-    uri: file.uri,
-    type: file.type || "image/jpeg",
-    name: file.fileName || "upload.jpg",
-  } as any);
-
-  formData.append("upload_preset", process.env.CLOUDINARY_UPLOAD_PRESET!);
-
+const uploadService = async (imageUri: string) => {
   try {
+    const formData = new FormData();
+
+    const uriParts = imageUri.split(".");
+    const fileType = uriParts[uriParts.length - 1];
+
+    formData.append("file", {
+      uri: imageUri,
+      name: `image.${fileType}`,
+      type: `image/${fileType}`,
+    } as any);
+
+    formData.append(
+      "upload_preset",
+      process.env.EXPO_PUBLIC_CLOUDINARY_UPLOAD_PRESET!
+    );
+
     const response = await axios.post(
-      `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`,
+      `https://api.cloudinary.com/v1_1/${process.env.EXPO_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
       formData,
       {
         headers: {
@@ -35,6 +34,7 @@ export type PickedImage = {
 
     return response.data;
   } catch (error) {
+    console.error("Upload error:", error);
     throw new Error("Failed to upload image");
   }
 };

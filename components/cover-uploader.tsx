@@ -9,9 +9,16 @@ import Colors from "@/constants/colors";
 import Avatar from "./ui/avatar";
 import Button from "./ui/button";
 import Typography from "@/constants/typography";
-import uploadService, { PickedImage } from "@/lib/upload.service";
+import uploadService from "@/lib/upload.service";
 
-const validateFile = (file: PickedImage): string | null => {
+// Fixed interface for mobile file validation
+interface MobileFile {
+  uri: string;
+  type: string;
+  fileSize?: number;
+}
+
+const validateFile = (file: MobileFile): string | null => {
   const maxSize = 250 * 1024; // 250KB
 
   if (file.fileSize && file.fileSize > maxSize) {
@@ -24,50 +31,70 @@ const validateFile = (file: PickedImage): string | null => {
 const CoverUploader = ({
   control,
   name = "cover",
+  uploadStatus = "idle",
+  setUploadStatus,
 }: {
   control: any;
   name?: string;
+  uploadStatus: "idle" | "uploading" | "success";
+  setUploadStatus: (status: "idle" | "uploading" | "success") => void;
 }) => {
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
-  const [uploadStatus, setUploadStatus] = useState<
-    "idle" | "uploading" | "success"
-  >("idle");
 
   const handleUploadClick = async (fieldOnChange: (value: any) => void) => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      quality: 0.7,
-    });
+    try {
+      // Request permissions
+      const permissionResult =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    if (!result.canceled) {
-      setUploadStatus("uploading");
-
-      const asset = result.assets[0];
-      const fileInfo = await FileSystem.getInfoAsync(asset.uri);
-
-      const file: PickedImage = {
-        uri: asset.uri,
-        type: asset.type ?? "image/jpeg",
-        fileSize: fileInfo.exists ? fileInfo.size : undefined,
-      };
-
-      const error = validateFile(file);
-      if (error) {
-        setUploadStatus("idle");
-        Alert.alert("Upload Failed", error);
+      if (permissionResult.granted === false) {
+        Alert.alert(
+          "Permission Required",
+          "Permission to access camera roll is required!"
+        );
         return;
       }
 
-      try {
-        const result = await uploadService(file);
-        setUploadStatus("success");
-        setUploadedImageUrl(result.secure_url);
-        fieldOnChange(result.secure_url);
-      } catch (e) {
-        setUploadStatus("idle");
-        Alert.alert("Upload Failed", "Something went wrong during upload.");
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        quality: 0.7,
+      });
+
+      if (!result.canceled) {
+        setUploadStatus("uploading");
+
+        const asset = result.assets[0];
+        const fileInfo = await FileSystem.getInfoAsync(asset.uri);
+
+        const file: MobileFile = {
+          uri: asset.uri,
+          type: asset.type ?? "image/jpeg",
+          fileSize: fileInfo.exists ? fileInfo.size : undefined,
+        };
+
+        const validationError = validateFile(file);
+        if (validationError) {
+          setUploadStatus("idle");
+          Alert.alert("Upload Failed", validationError);
+          return;
+        }
+
+        try {
+          const uploadResult = await uploadService(file.uri);
+          setUploadStatus("success");
+          setUploadedImageUrl(uploadResult.secure_url);
+          fieldOnChange(uploadResult.secure_url);
+        } catch (error: any) {
+          console.error("Upload failed:", error);
+          setUploadStatus("idle");
+          Alert.alert("Upload Failed", "Something went wrong during upload.");
+        }
       }
+    } catch (error) {
+      console.error("Image picker error:", error);
+      setUploadStatus("idle");
+      Alert.alert("Error", "Failed to pick image");
     }
   };
 

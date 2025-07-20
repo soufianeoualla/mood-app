@@ -23,6 +23,9 @@ const Colors = {
   green: {
     300: "#89e780",
   },
+  emeraled:{
+    300: "#34D399",
+  },
   amber: {
     300: "#ffc97c",
   },

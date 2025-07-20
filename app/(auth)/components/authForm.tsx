@@ -23,7 +23,7 @@ const AuthForm = ({ type }: { type?: "login" | "signup" }) => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors,isValid },
     reset,
   } = useForm({
     resolver: zodResolver(authSchema),
@@ -106,19 +106,22 @@ const AuthForm = ({ type }: { type?: "login" | "signup" }) => {
         )}
       </View>
 
-      {/* Forgot Password */}
-      <TouchableOpacity
-        style={styles.forgotWrapper}
-        onPress={() => router.push("/forgot-password")}
-      >
-        <Text style={styles.forgotText}>Forgot Password?</Text>
-      </TouchableOpacity>
+      {type === "login" && (
+        <TouchableOpacity
+          style={styles.forgotWrapper}
+          onPress={() => router.push("/forgot-password")}
+        >
+          <Text style={styles.forgotText}>Forgot Password?</Text>
+        </TouchableOpacity>
+      )}
 
       <FormMessage message={errorMessage} isError />
       <FormMessage message={successMessage} />
 
       {/* Submit Button */}
       <Button
+        isLoading={mutation.isPending}
+        disabled={!isValid}
         onPress={handleSubmit(onSubmit)}
         buttonText={type === "login" ? "Log In" : "Sign Up"}
       />

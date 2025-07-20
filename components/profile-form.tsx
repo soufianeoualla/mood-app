@@ -1,5 +1,5 @@
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import Typography from "@/constants/typography";
 import Colors from "@/constants/colors";
@@ -40,6 +40,9 @@ const ProfileForm = ({
     defaultValues,
     mode: "onChange",
   });
+  const [uploadStatus, setUploadStatus] = useState<
+    "idle" | "uploading" | "success"
+  >("idle");
 
   return (
     <View style={{ flex: 1 }}>
@@ -67,11 +70,17 @@ const ProfileForm = ({
           />
         </View>
 
-        <CoverUploader control={form.control} name="cover" />
+        <CoverUploader
+          control={form.control}
+          name="cover"
+          uploadStatus={uploadStatus}
+          setUploadStatus={setUploadStatus}
+        />
       </ScrollView>
       <View style={styles.footer}>
         <Button
-          isLoading={isPending}
+          disabled={!form.formState.isValid}
+          isLoading={isPending || uploadStatus === "uploading"}
           onPress={form.handleSubmit(onSubmit)}
           buttonText={buttonText}
           styles={{ container: styles.button }}

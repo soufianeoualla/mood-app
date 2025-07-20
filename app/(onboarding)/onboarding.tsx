@@ -1,17 +1,26 @@
-import { ScrollView, View } from "react-native";
-import React, { useState } from "react";
+import { View } from "react-native";
+import React, { useEffect, useState } from "react";
 import ProfileForm, { ProfileSchemaType } from "@/components/profile-form";
 import useAuthStore from "@/store/use-auth-store";
-import onboardingService from "./services/onboarding.service";
+import onboardingService from "../(protected)/services/onboarding.service";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Popup from "@/components/ui/popup";
 import { Logo } from "@/assets";
 
+import { useRouter } from "expo-router";
+
 const Onboarding = () => {
-  const { setUser } = useAuthStore();
+  const { setUser, user } = useAuthStore();
+  const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    if (user?.onboardingComplete) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (data: ProfileSchemaType) => onboardingService(data),
@@ -33,13 +42,14 @@ const Onboarding = () => {
     <View
       style={{
         flex: 1,
+        paddingVertical: 24,
       }}
     >
       <Logo
         style={{
           margin: "auto",
           marginBottom: 32,
-          marginTop: 20,
+          marginTop: 48,
         }}
       />
 
