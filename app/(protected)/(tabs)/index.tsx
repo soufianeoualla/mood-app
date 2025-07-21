@@ -16,10 +16,11 @@ const Home = () => {
     <View
       style={{
         flex: 1,
+
       }}
     >
       <Header />
-      <ScrollView style={{ flex: 1, paddingHorizontal: 20, paddingBottom: 30 }}>
+      <ScrollView style={{ flex: 1, paddingHorizontal: 20, }}>
         <Greeting />
 
         {currentMoodEntry ? (

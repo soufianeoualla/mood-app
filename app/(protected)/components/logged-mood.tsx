@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { Fragment } from "react";
 import Typography from "@/constants/typography";
 import Colors from "@/constants/colors";
 import { QuoteIcon, ReflectionIcon, SleepIcon } from "@/assets";
@@ -76,11 +75,15 @@ const ReflectionContainer = () => {
 
 const LoggedMood = () => {
   return (
-    <Fragment>
+    <View
+    style={{
+      marginBottom: 100,
+    }}
+    >
       <MoodContainer />
       <SleepContainer />
       <ReflectionContainer />
-    </Fragment>
+    </View>
   );
 };
 

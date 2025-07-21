@@ -12,6 +12,25 @@ function TabBarIcon(props: {
 }) {
   return <Ionicons {...props} />;
 }
+const tabBarStyle = {
+  backgroundColor: Colors.neutral[0],
+  borderWidth: 1,
+  marginHorizontal: 8,
+  borderRadius: 40,
+  borderColor: Colors.blue[100],
+  paddingBottom: 8,
+  marginVertical: 8,
+  paddingTop: 8,
+  height: 70,
+  elevation: 3,
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: -1,
+  },
+  shadowOpacity: 0.1,
+  shadowRadius: 2,
+};
 
 export default function TabLayout() {
   return (
@@ -19,25 +38,7 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors.blue[600],
         tabBarInactiveTintColor: Colors.neutral[300],
-        tabBarStyle: {
-          backgroundColor: Colors.neutral[0],
-          borderWidth: 1,
-          marginHorizontal: 16,
-          borderRadius: 40,
-          borderColor: Colors.blue[100],
-          paddingBottom: 8,
-          marginTop: 8,
-          paddingTop: 8,
-          height: 70,
-          elevation: 3,
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: -1,
-          },
-          shadowOpacity: 0.1,
-          shadowRadius: 2,
-        },
+
         tabBarLabelStyle: {
           ...Typography.preset8,
         },
@@ -63,6 +64,10 @@ export default function TabLayout() {
           sceneStyle: {
             backgroundColor: "transparent",
           },
+          tabBarStyle: {
+            ...tabBarStyle,
+            position: "absolute",
+          },
         }}
       />
 
@@ -79,6 +84,10 @@ export default function TabLayout() {
           ),
           sceneStyle: {
             backgroundColor: "transparent",
+          },
+          tabBarStyle: {
+            ...tabBarStyle,
+            position: "absolute",
           },
         }}
       />
@@ -97,6 +106,7 @@ export default function TabLayout() {
           sceneStyle: {
             backgroundColor: "transparent",
           },
+          tabBarStyle: tabBarStyle,
         }}
       />
     </Tabs>

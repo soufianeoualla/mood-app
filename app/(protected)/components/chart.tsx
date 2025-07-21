@@ -178,7 +178,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: Colors.blue[100],
-    marginVertical: 24,
+    marginTop: 24,
+    marginBottom:100
+
   },
   trendTitle: {
     ...Typography.preset3,
@@ -219,7 +221,6 @@ const styles = StyleSheet.create({
     left: 0,
     height: 1,
     minWidth: Dimensions.get("window").width + 200,
-
     backgroundColor: "#D0E2FF",
   },
   chartEntries: {
