@@ -41,8 +41,9 @@ const EntryDetails = ({
   onClose: () => void;
 }) => {
   const { mood, sleepHours, feelings, comment } = entry;
-  const { Icon, moodText,color } = getMoodConfig(mood as Mood);
+  const { Icon, moodText, color } = getMoodConfig(mood as Mood);
   const sleepHoursLabel = getSleepHours(sleepHours as SleepHours)?.label;
+  console.log(Dimensions.get("window").width + 200);
 
   return (
     <Modal isVisible={isVisible} onBackdropPress={onClose}>
@@ -50,7 +51,7 @@ const EntryDetails = ({
         <View style={styles.modalSection}>
           <Text style={styles.modalLabel}>Mood</Text>
           <View style={styles.modalRow}>
-            <Icon width={16} height={16} color={color}  />
+            <Icon width={16} height={16} color={color} />
             <Text style={styles.modalText}>{moodText}</Text>
           </View>
         </View>
@@ -179,8 +180,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.blue[100],
     marginTop: 24,
-    marginBottom:100
-
+    marginBottom: 100,
   },
   trendTitle: {
     ...Typography.preset3,
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexDirection: "row",
-    minWidth: Dimensions.get("window").width + 210,
+    minWidth: 620,
     paddingBottom: 40,
   },
   linesContainer: {
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     height: 1,
-    minWidth: Dimensions.get("window").width + 200,
+    minWidth: 610,
     backgroundColor: "#D0E2FF",
   },
   chartEntries: {
